@@ -1,4 +1,4 @@
-package com.breaktime.lab2
+package com.breaktime.lab2.currency_parser
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
