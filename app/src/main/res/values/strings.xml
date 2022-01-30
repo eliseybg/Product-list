@@ -5,4 +5,8 @@
     <string name="my_location">My location</string>
     <string name="budnitsky_elisey">Budnitsky Elisey</string>
     <string name="mail">budnitsky.elisey@gmail.com</string>
+
+    <string name="about_developer">About developer</string>
+    <string name="group">951006</string>
+    <string name="about">About</string>
 </resources>
