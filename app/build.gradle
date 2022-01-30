@@ -65,4 +65,7 @@ dependencies {
 
     def map_version = "18.0.2"
     implementation "com.google.android.gms:play-services-maps:$map_version"
+
+    def jsoup_version = "1.13.1"
+    implementation "org.jsoup:jsoup:$jsoup_version"
 }
