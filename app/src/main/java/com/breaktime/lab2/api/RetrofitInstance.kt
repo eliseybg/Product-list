@@ -1,6 +1,6 @@
 package com.breaktime.lab2.api
 
-import com.breaktime.lab2.Util.Companion.BASE_URL
+import com.breaktime.lab2.util.Util.Companion.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

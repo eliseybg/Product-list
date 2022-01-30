@@ -1,4 +1,4 @@
-package com.breaktime.lab2
+package com.breaktime.lab2.util
 
 class Util {
     companion object {
