@@ -9,4 +9,11 @@
     <string name="about_developer">About developer</string>
     <string name="group">951006</string>
     <string name="about">About</string>
+    <string name="currency">Currency</string>
+    <string name="buy">Buy</string>
+    <string name="sell">Sell</string>
+    <string name="usd">USD</string>
+    <string name="euro">EURO</string>
+    <string name="rub">RUB 100</string>
+    <string name="update">Update</string>
 </resources>
