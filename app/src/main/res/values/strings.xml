@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Lab2</string>
+    <string name="profile">Profile</string>
+    <string name="image">image</string>
+    <string name="my_location">My location</string>
+    <string name="budnitsky_elisey">Budnitsky Elisey</string>
+    <string name="mail">budnitsky.elisey@gmail.com</string>
 </resources>
