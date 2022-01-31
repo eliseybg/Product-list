@@ -16,4 +16,6 @@
     <string name="euro">EURO</string>
     <string name="rub">RUB 100</string>
     <string name="update">Update</string>
+    <string name="home">Home</string>
+    <string name="explore">Explore</string>
 </resources>
