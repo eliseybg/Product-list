@@ -88,6 +88,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/expand"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -110,8 +111,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#CACACA"
-                    android:paddingVertical="4dp"
                     android:paddingHorizontal="15dp"
+                    android:paddingVertical="4dp"
                     android:text="@string/favorite"
                     android:textSize="18sp"
                     app:drawableStartCompat="@drawable/ic_favorite_border_24"
