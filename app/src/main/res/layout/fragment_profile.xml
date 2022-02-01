@@ -40,6 +40,17 @@
                     android:padding="5dp"
                     app:srcCompat="@drawable/ic_info_24"
                     app:tint="#fff" />
+
+                <ImageButton
+                    android:id="@+id/theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@null"
+                    android:contentDescription="@string/image"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/ic_sun_24"
+                    app:tint="#fff" />
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
