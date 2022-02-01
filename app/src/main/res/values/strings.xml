@@ -18,4 +18,6 @@
     <string name="update">Update</string>
     <string name="home">Home</string>
     <string name="explore">Explore</string>
+    <string name="favorite">Favorite</string>
+    <string name="in_stock">in stock</string>
 </resources>
