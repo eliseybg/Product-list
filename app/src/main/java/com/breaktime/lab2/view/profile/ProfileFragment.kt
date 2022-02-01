@@ -1,15 +1,9 @@
 package com.breaktime.lab2.view.profile
 
-import android.Manifest
-import android.annotation.SuppressLint
-import android.content.Context
-import android.content.pm.PackageManager
-import android.location.LocationManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -56,21 +50,4 @@ class ProfileFragment : Fragment(), OnMapReadyCallback {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 10f))
     }
 
-    private fun checkPermission(): Boolean {
-        return ActivityCompat.checkSelfPermission(
-            requireContext(), Manifest.permission.ACCESS_FINE_LOCATION
-        ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-            requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION
-        ) != PackageManager.PERMISSION_GRANTED
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun getMyLocation(): Pair<Double?, Double?> {
-        val locationManager =
-            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val locationProvider = LocationManager.NETWORK_PROVIDER
-        val lastKnownLocation =
-            locationManager.getLastKnownLocation(locationProvider)
-        return lastKnownLocation?.latitude to lastKnownLocation?.longitude
-    }
 }
