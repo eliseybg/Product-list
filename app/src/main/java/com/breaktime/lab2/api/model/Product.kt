@@ -1,5 +1,8 @@
 package com.breaktime.lab2.api.model
 
+import com.google.gson.annotations.Expose
+import kotlin.random.Random
+
 data class Product(
     val id: Long,
     val title: String,
@@ -7,5 +10,7 @@ data class Product(
     val description: String,
     val category: String,
     val image: String,
-    val rating: Rating
+    val rating: Rating,
+    @Expose
+    val isInStock: Boolean = Random.nextBoolean()
 )
