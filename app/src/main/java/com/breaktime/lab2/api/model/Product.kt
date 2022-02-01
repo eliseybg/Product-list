@@ -1,4 +1,4 @@
-package com.breaktime.lab2.model
+package com.breaktime.lab2.api.model
 
 data class Product(
     val id: Long,
@@ -7,6 +7,5 @@ data class Product(
     val description: String,
     val category: String,
     val image: String,
-    @com.google.gson.annotations.Expose
-    val rating: Rating,
+    val rating: Rating
 )
