@@ -24,5 +24,16 @@ class Repository {
         }.flowOn(Dispatchers.IO)
     }
 
-//    var allCategories = RetrofitInstance.api.getCategories()
+    var allCategories: Flow<List<String>?> = getFlowCategories()
+    private fun getFlowCategories(): Flow<List<String>?> {
+        return flow {
+            try {
+                val fooList = RetrofitInstance.api.getCategories()
+                emit(fooList)
+            } catch (e: Exception) {
+                println("error   $e")
+                emit(null)
+            }
+        }.flowOn(Dispatchers.IO)
+    }
 }

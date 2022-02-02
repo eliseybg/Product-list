@@ -1,7 +1,6 @@
 package com.breaktime.lab2.api
 
 import com.breaktime.lab2.api.model.Product
-import retrofit2.Call
 import retrofit2.http.GET
 
 interface ProductApi {
@@ -9,5 +8,5 @@ interface ProductApi {
     suspend fun getProducts(): List<Product>
 
     @GET("products/categories")
-    fun getCategories(): Call<List<String>>
+    suspend fun getCategories(): List<String>
 }
