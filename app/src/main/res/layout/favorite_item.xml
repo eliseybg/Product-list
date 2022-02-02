@@ -9,7 +9,9 @@
             type="com.breaktime.lab2.data.ProductEntity" />
     </data>
 
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/card"
         style="@style/CardView.Light"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -32,21 +34,22 @@
                     android:layout_height="54dp"
                     android:layout_margin="16dp"
                     android:background="@drawable/round_outline"
-                    android:clipToOutline="true"
-                    android:padding="3dp"
+                    android:padding="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="12dp"
+                    android:maxLines="2"
                     android:text="@{product.title}"
                     android:textColor="#494949"
                     android:textSize="22sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/price"
                     app:layout_constraintStart_toEndOf="@+id/image"
                     app:layout_constraintTop_toTopOf="@+id/image" />
 
@@ -54,9 +57,10 @@
                     android:id="@+id/category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
                     android:text="@{product.category}"
+                    android:textColor="#616161"
                     android:textStyle="italic"
-                    app:layout_constraintBottom_toBottomOf="@+id/image"
                     app:layout_constraintStart_toStartOf="@+id/title"
                     app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -82,7 +86,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_arrow_down_24" />
+                    app:srcCompat="@drawable/ic_arrow_down_24"
+                    app:tint="@color/black" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -99,7 +104,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="5dp"
                     android:text="@{product.description}"
                     android:textColor="#575757"
                     android:textSize="20sp"
@@ -124,12 +128,13 @@
                     android:id="@+id/rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{Double.toString(product.rating.rate)}"
+                    android:text="@{Double.toString(product.rating)}"
                     android:textSize="18sp"
                     app:drawableStartCompat="@drawable/ic_star_24"
                     app:layout_constraintEnd_toEndOf="@+id/description"
                     app:layout_constraintStart_toEndOf="@+id/favorite"
                     app:layout_constraintTop_toBottomOf="@+id/in_stock" />
+
 
                 <TextView
                     android:id="@+id/label"
