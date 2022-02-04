@@ -30,7 +30,7 @@ class CurrencyFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_currency, container, false
         )
-        binding.root.setOnClickListener {
+        binding.update.setOnClickListener {
             updateDate()
         }
         updateDate()
