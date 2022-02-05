@@ -19,12 +19,18 @@ data class Product(
     @Expose
     val isInStock: Boolean = true,
     @Expose
-    var isVisible: Boolean = false
+    var isVisible: Boolean = false,
+    @Expose
+    var isFavorite: Boolean = false
 ) {
     var bitmap: Flow<Bitmap?> = flow {
         val url = URL(image)
-        val bmp =
-            BitmapFactory.decodeStream(url.openConnection().getInputStream())
-        emit(bmp)
+        try {
+            val bmp =
+                BitmapFactory.decodeStream(url.openConnection().getInputStream())
+            emit(bmp)
+        } catch (e: Exception) {
+            emit(null)
+        }
     }.flowOn(kotlinx.coroutines.Dispatchers.IO)
 }
