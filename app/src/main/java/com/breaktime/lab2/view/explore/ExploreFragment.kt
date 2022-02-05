@@ -13,13 +13,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.breaktime.lab2.R
+import com.breaktime.lab2.api.model.Product
 import com.breaktime.lab2.databinding.FragmentExploreBinding
+import com.breaktime.lab2.repository.Repository
 import com.breaktime.lab2.util.ResourcesProvider
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.util.*
 import javax.inject.Inject
-
 
 @AndroidEntryPoint
 class ExploreFragment : Fragment() {
@@ -28,6 +30,9 @@ class ExploreFragment : Fragment() {
 
     @Inject
     lateinit var resourcesProvider: ResourcesProvider
+
+    @Inject
+    lateinit var repository: Repository
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,10 +51,11 @@ class ExploreFragment : Fragment() {
             noConnection.setOnClickListener {
                 loadList()
             }
-            val adapter = RecyclerProductsAdapter(resourcesProvider)
+            val adapter = RecyclerProductsAdapter(resourcesProvider, repository)
             list.layoutManager = LinearLayoutManager(context)
             list.adapter = adapter
             loadList()
+            reset.setOnClickListener { resetList() }
         }
         return binding.root
     }
@@ -61,12 +67,45 @@ class ExploreFragment : Fragment() {
             products.onEach {
                 if (it == null)
                     showApiProblem()
-                else
-                    (binding.list.adapter as RecyclerProductsAdapter).items = it
+                else {
+                    binding.loading.visibility = View.VISIBLE
+                    (binding.list.adapter as RecyclerProductsAdapter).items = modifyList(it)
+                    binding.loading.visibility = View.GONE
+                }
             }.launchIn(lifecycleScope)
         } else {
             showNoInternet(false)
         }
+    }
+
+    private fun modifyList(list: List<Product>): List<Product> {
+        if (arguments?.isEmpty != false)
+            return list
+        val args = requireArguments()
+        binding.reset.visibility = View.VISIBLE
+        val sequence =
+            list.asSequence()
+                .filter { it.isInStock == args.getBoolean("isInStock") }
+                .filter { it.price in args.getFloat("minPrice")..args.getFloat("maxPrice") }
+                .filter {
+                    it.title.uppercase(Locale.getDefault())
+                        .contains(
+                            args.getString("searchText")!!.uppercase(Locale.getDefault())
+                        )
+                }
+                .filter {
+                    if (args.getString("category")!! == "Any")
+                        true
+                    else
+                        it.category == args.getString("category")!!
+                }
+        return sequence.toList()
+    }
+
+    private fun resetList() {
+        binding.reset.visibility = View.INVISIBLE
+        arguments?.clear()
+        loadList()
     }
 
     private fun showNoInternet(isConnected: Boolean) {

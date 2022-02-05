@@ -10,10 +10,6 @@ import javax.inject.Inject
 @HiltViewModel
 class ExploreViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
     fun getAllProducts(): Flow<List<Product>?> {
-        println("repository = $repository")
-        var res = repository.allProducts
-        println("res    $res")
-        return res
+        return repository.allProducts
     }
-
 }

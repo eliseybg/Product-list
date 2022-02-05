@@ -22,4 +22,13 @@
     <string name="in_stock">in stock</string>
     <string name="internet_error">Internet error. Press to reconnect</string>
     <string name="api_error">Api error. Press to reconnect</string>
+    <string name="without_favorite">You don\'t have favorite items</string>
+    <string name="search">Search</string>
+    <string name="search_text">search text</string>
+    <string name="category">Category</string>
+    <string name="price">Price</string>
+    <string name="from">from</string>
+    <string name="to">to</string>
+    <string name="is_in_stock">Is in stock</string>
+    <string name="clear_filter">Clear filter</string>
 </resources>
