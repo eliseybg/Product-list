@@ -9,7 +9,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.breaktime.lab2.R
 import com.breaktime.lab2.data.ProductEntity
@@ -53,6 +55,13 @@ class RecyclerFavoriteAdapter(
             root.setOnClickListener {
                 product.isVisible = !product.isVisible
                 notifyItemChanged(position)
+            }
+            web.setOnClickListener {
+                root.findNavController()
+                    .navigate(
+                        R.id.webFragment,
+                        bundleOf("path" to "https://fakestoreapi.com/products/${product.id}")
+                    )
             }
             more.setOnClickListener {
                 product.isVisible = !product.isVisible
