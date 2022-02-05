@@ -97,13 +97,15 @@ class RecyclerProductsAdapter(
         }
 
         private fun addFavorite(product: Product) {
-            repository.addFavorite(product.toProductEntity())
-            favoriteList.add(product.toProductEntity())
+            val entity = product.toProductEntity()
+            repository.addFavorite(entity)
+            favoriteList.add(entity)
         }
 
         private fun deleteFavorite(product: Product) {
-            repository.deleteFavorite(product.toProductEntity())
-            favoriteList.remove(product.toProductEntity())
+            val entity = product.toProductEntity()
+            repository.deleteFavorite(entity)
+            favoriteList.remove(entity)
         }
     }
 }
