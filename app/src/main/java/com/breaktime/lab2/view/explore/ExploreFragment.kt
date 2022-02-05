@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.breaktime.lab2.R
@@ -18,8 +17,6 @@ import com.breaktime.lab2.databinding.FragmentExploreBinding
 import com.breaktime.lab2.repository.Repository
 import com.breaktime.lab2.util.ResourcesProvider
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import java.util.*
 import javax.inject.Inject
 
@@ -51,6 +48,9 @@ class ExploreFragment : Fragment() {
             noConnection.setOnClickListener {
                 loadList()
             }
+            noApi.setOnClickListener {
+                loadList()
+            }
             val adapter = RecyclerProductsAdapter(resourcesProvider, repository)
             list.layoutManager = LinearLayoutManager(context)
             list.adapter = adapter
@@ -61,18 +61,12 @@ class ExploreFragment : Fragment() {
     }
 
     private fun loadList() {
-        val products = viewModel.getAllProducts()
         if (isInternetAvailable()) {
             showNoInternet(true)
-            products.onEach {
-                if (it == null)
-                    showApiProblem()
-                else {
-                    binding.loading.visibility = View.VISIBLE
-                    (binding.list.adapter as RecyclerProductsAdapter).items = modifyList(it)
-                    binding.loading.visibility = View.GONE
-                }
-            }.launchIn(lifecycleScope)
+            binding.loading.visibility = View.VISIBLE
+            val products = viewModel.getAllProducts()
+            (binding.list.adapter as RecyclerProductsAdapter).items = modifyList(products)
+            binding.loading.visibility = View.GONE
         } else {
             showNoInternet(false)
         }

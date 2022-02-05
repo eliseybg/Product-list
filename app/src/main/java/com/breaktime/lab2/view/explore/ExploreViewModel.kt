@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ExploreViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
-    fun getAllProducts(): Flow<List<Product>?> {
+    fun getAllProducts(): List<Product> {
         return repository.allProducts
     }
 }

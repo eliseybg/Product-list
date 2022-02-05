@@ -6,39 +6,34 @@ import com.breaktime.lab2.api.model.Product
 import com.breaktime.lab2.data.FavoriteProductDao
 import com.breaktime.lab2.data.ProductEntity
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class Repository(private var productApi: ProductApi, private var productDao: FavoriteProductDao) {
-    val allProducts: Flow<List<Product>?> = getFlowProducts()
-    val allCategories: Flow<List<String>?> = getFlowCategories()
+    lateinit var allProducts: List<Product>
+    lateinit var allCategories: List<String>
     val favoriteCategories = MutableLiveData<List<String>?>()
 
-    private fun getFlowProducts(): Flow<List<Product>?> {
-        return flow {
-            try {
-                val fooList =
-                    productApi.getProducts().map {
-                        it.copy(isInStock = Random.nextBoolean())
-                    }
-                emit(fooList)
-            } catch (e: Exception) {
-                println("error   $e")
-                emit(null)
-            }
-        }.flowOn(Dispatchers.IO)
+    init {
+        MainScope().launch(Dispatchers.IO) {
+            val products = async { getProducts() }
+            val categories = async { getCategories() }
+            allProducts = products.await()
+            allCategories = categories.await()
+        }
     }
 
-    private fun getFlowCategories(): Flow<List<String>?> {
-        return flow {
-            try {
-                val fooList = productApi.getCategories()
-                emit(fooList)
-            } catch (e: Exception) {
-                println("error   $e")
-                emit(null)
-            }
-        }.flowOn(Dispatchers.IO)
+    private suspend fun getProducts(): List<Product> {
+        val list = productApi.getProducts().map {
+            it.copy(isInStock = Random.nextBoolean())
+        }
+        return list
+    }
+
+    private suspend fun getCategories(): List<String> {
+        return productApi.getCategories()
     }
 
     fun getFavoriteProducts(): List<ProductEntity> {
@@ -57,13 +52,5 @@ class Repository(private var productApi: ProductApi, private var productDao: Fav
 
     fun updateFavorite(productEntity: ProductEntity) {
         productDao.updateProduct(productEntity)
-    }
-
-    suspend fun setup() {
-        allProducts.onEach { list ->
-            list?.forEach { product ->
-                product.bitmap.collect()
-            }
-        }
     }
 }

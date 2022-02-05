@@ -12,16 +12,12 @@ import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.breaktime.lab2.R
 import com.breaktime.lab2.databinding.FragmentHomeBinding
 import com.breaktime.lab2.repository.Repository
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -36,9 +32,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        GlobalScope.launch(Dispatchers.IO) {
-            repository.setup()
-        }
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_home, container, false
         )

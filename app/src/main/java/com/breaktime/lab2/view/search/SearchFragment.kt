@@ -8,14 +8,11 @@ import android.widget.ArrayAdapter
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.breaktime.lab2.R
 import com.breaktime.lab2.databinding.FragmentSearchBinding
 import com.breaktime.lab2.repository.Repository
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -37,10 +34,7 @@ class SearchFragment : Fragment() {
                 requireContext(),
                 android.R.layout.simple_spinner_item, categories
             )
-            repository.allCategories.onEach {
-                if (it != null)
-                    categories.addAll(it)
-            }.launchIn(lifecycleScope)
+            categories.addAll(repository.allCategories)
             category.adapter = arrayAdapter
 
             search.setOnClickListener {
