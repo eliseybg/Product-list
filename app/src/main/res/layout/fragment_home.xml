@@ -22,12 +22,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp">
+                <ImageButton
+                    android:id="@+id/web"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:background="@null"
+                    android:contentDescription="@string/image"
+                    android:padding="5dp"
+                    app:srcCompat="@drawable/ic_web_24"
+                    app:tint="#fff" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/favorite"
                     android:textColor="#fff"
+                    android:paddingHorizontal="10dp"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 

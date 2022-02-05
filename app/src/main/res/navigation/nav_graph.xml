@@ -16,9 +16,6 @@
         android:label="fragment_explore"
         tools:layout="@layout/fragment_explore">
         <action
-            android:id="@+id/action_exploreFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
-        <action
             android:id="@+id/action_exploreFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
         <action
@@ -41,28 +38,16 @@
             app:argType="boolean" />
     </fragment>
     <fragment
-        android:id="@+id/favoriteFragment"
-        android:name="com.breaktime.lab2.view.favorite.FavoriteFragment"
-        android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite">
-        <action
-            android:id="@+id/action_favoriteFragment_to_exploreFragment"
-            app:destination="@id/exploreFragment" />
-        <action
-            android:id="@+id/action_favoriteFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/homeFragment"
         android:name="com.breaktime.lab2.view.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_favoriteFragment"
-            app:destination="@id/favoriteFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_currencyFragment"
             app:destination="@id/currencyFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_webFragment"
+            app:destination="@id/webFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -90,4 +75,13 @@
         android:name="com.breaktime.lab2.view.currency.CurrencyFragment"
         android:label="CurrencyFragment"
         tools:layout="@layout/fragment_currency" />
+    <fragment
+        android:id="@+id/webFragment"
+        android:name="com.breaktime.lab2.view.web.WebFragment"
+        android:label="WebFragment"
+        tools:layout="@layout/fragment_web"  >
+        <argument
+            android:name="id"
+            app:argType="long" />
+    </fragment>
 </navigation>

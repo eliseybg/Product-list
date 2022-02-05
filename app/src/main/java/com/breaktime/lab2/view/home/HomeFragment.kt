@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.os.bundleOf
 import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.breaktime.lab2.R
@@ -50,6 +52,13 @@ class HomeFragment : Fragment() {
                         categoryList.addView(createButton(it))
                     }
                 }
+            }
+            web.setOnClickListener {
+                findNavController()
+                    .navigate(
+                        R.id.webFragment,
+                        bundleOf("path" to "https://fakestoreapi.com/")
+                    )
             }
             currency.setOnClickListener {
                 findNavController().navigate(R.id.currencyFragment)
