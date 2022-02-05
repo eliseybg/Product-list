@@ -11,6 +11,7 @@ import androidx.core.view.children
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.breaktime.lab2.R
 import com.breaktime.lab2.databinding.FragmentHomeBinding
@@ -49,6 +50,9 @@ class HomeFragment : Fragment() {
                         categoryList.addView(createButton(it))
                     }
                 }
+            }
+            currency.setOnClickListener {
+                findNavController().navigate(R.id.currencyFragment)
             }
             val adapter = RecyclerFavoriteAdapter(repository)
             adapter.items = viewModel.getAllProducts()
