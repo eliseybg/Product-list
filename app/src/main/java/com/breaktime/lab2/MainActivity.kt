@@ -1,7 +1,7 @@
 package com.breaktime.lab2
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -14,10 +14,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(
-            this, R.layout.activity_main)
+            this, R.layout.activity_main
+        )
         setContentView(binding.root)
         supportActionBar?.hide()
-        var nav = findNavController(R.id.fragmentContainerView)
+        val nav = findNavController(R.id.fragmentContainerView)
         binding.navbar.setupWithNavController(nav)
     }
 }
