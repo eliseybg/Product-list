@@ -112,15 +112,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/label" />
 
                 <TextView
-                    android:id="@+id/favorite"
+                    android:id="@+id/delete"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#CACACA"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="4dp"
-                    android:text="@string/favorite"
+                    android:text="@string/delete"
                     android:textSize="18sp"
-                    app:drawableStartCompat="@drawable/ic_favorite_border_24"
                     app:layout_constraintStart_toStartOf="@+id/description"
                     app:layout_constraintTop_toBottomOf="@+id/in_stock" />
 
@@ -132,7 +131,7 @@
                     android:textSize="18sp"
                     app:drawableStartCompat="@drawable/ic_star_24"
                     app:layout_constraintEnd_toEndOf="@+id/description"
-                    app:layout_constraintStart_toEndOf="@+id/favorite"
+                    app:layout_constraintStart_toEndOf="@+id/delete"
                     app:layout_constraintTop_toBottomOf="@+id/in_stock" />
 
 
