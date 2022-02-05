@@ -4,6 +4,7 @@ import android.util.Log
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import javax.inject.Inject
+import kotlin.math.round
 
 class CurrencyParser @Inject constructor() {
     var data = HashMap<String, Pair<Double, Double>>()
@@ -29,6 +30,14 @@ class CurrencyParser @Inject constructor() {
         }
         data[resList[0]] = resList[2].toDouble() to resList[4].toDouble()
         data[resList[5]] = resList[7].toDouble() to resList[9].toDouble()
-        data[resList[10]] = resList[12].toDouble() * 100 to resList[14].toDouble() * 100
+        var buy = resList[12].toDouble()
+        buy *= 100000
+        buy = round(buy)
+        buy /= 1000f
+        var sell = resList[14].toDouble()
+        sell *= 100000
+        sell = round(sell)
+        sell /= 1000f
+        data[resList[10]] = buy to sell
     }
 }
