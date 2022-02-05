@@ -12,7 +12,6 @@ import kotlin.random.Random
 class Repository(private var productApi: ProductApi, private var productDao: FavoriteProductDao) {
     val allProducts: Flow<List<Product>?> = getFlowProducts()
     val allCategories: Flow<List<String>?> = getFlowCategories()
-    val favoriteProducts = MutableLiveData<List<String>?>()
     val favoriteCategories = MutableLiveData<List<String>?>()
 
     private fun getFlowProducts(): Flow<List<Product>?> {

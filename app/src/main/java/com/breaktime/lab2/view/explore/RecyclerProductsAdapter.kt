@@ -18,7 +18,6 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-
 class RecyclerProductsAdapter(
     private val resourcesProvider: ResourcesProvider,
     private val repository: Repository

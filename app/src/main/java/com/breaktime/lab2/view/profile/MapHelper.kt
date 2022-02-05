@@ -8,7 +8,6 @@ import android.location.LocationManager
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 
-
 fun Fragment.checkPermission(): Boolean {
     return ActivityCompat.checkSelfPermission(
         requireContext(), Manifest.permission.ACCESS_FINE_LOCATION

@@ -63,5 +63,4 @@ open class ProductEntity(
             isInStock,
             label
         )
-
 }

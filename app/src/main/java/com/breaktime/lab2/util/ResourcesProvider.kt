@@ -6,7 +6,8 @@ import androidx.appcompat.content.res.AppCompatResources
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class ResourcesProvider @Inject constructor( @ApplicationContext
+class ResourcesProvider @Inject constructor(
+    @ApplicationContext
     private val context: Context
 ) {
     fun getDrawable(drawableResId: Int): Drawable? {

@@ -91,5 +91,4 @@ class ProfileFragment : Fragment(), OnMapReadyCallback {
         )
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 10f))
     }
-
 }
