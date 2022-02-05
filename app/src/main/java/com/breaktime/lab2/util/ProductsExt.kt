@@ -1,22 +1,22 @@
 package com.breaktime.lab2.util
 
-import android.graphics.Bitmap
 import com.breaktime.lab2.api.model.Product
 import com.breaktime.lab2.data.ProductEntity
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 
 fun Product.toProductEntity(): ProductEntity {
-    var bitmap: Bitmap? = null
-    this.bitmap.onEach { bitmap = it }.launchIn(MainScope())
+    var _bmp: ByteArray?
+    runBlocking(Dispatchers.IO) {
+        _bmp = bmp?.toByteArray()
+    }
     return ProductEntity(
         id,
         title,
         price,
         description,
         category,
-        bitmap?.toByteArray(),
+        _bmp,
         rating.rate,
         isInStock
     )

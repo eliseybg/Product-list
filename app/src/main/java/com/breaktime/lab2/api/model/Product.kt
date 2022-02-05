@@ -23,12 +23,14 @@ data class Product(
     @Expose
     var isFavorite: Boolean = false
 ) {
+    var bmp: Bitmap? = null
     var bitmap: Flow<Bitmap?> = flow {
         val url = URL(image)
         try {
-            val bmp =
+            val _bmp =
                 BitmapFactory.decodeStream(url.openConnection().getInputStream())
-            emit(bmp)
+            bmp = _bmp
+            emit(_bmp)
         } catch (e: Exception) {
             emit(null)
         }
