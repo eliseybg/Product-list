@@ -1,28 +1,38 @@
 package com.breaktime.lab2.view.explore
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.breaktime.lab2.R
 import com.breaktime.lab2.api.model.Product
 import com.breaktime.lab2.databinding.SearchItemBinding
+import com.breaktime.lab2.repository.Repository
 import com.breaktime.lab2.util.ResourcesProvider
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import com.breaktime.lab2.util.toProductEntity
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
-class RecyclerProductsAdapter(private val resourcesProvider: ResourcesProvider) :
+class RecyclerProductsAdapter(
+    private val resourcesProvider: ResourcesProvider,
+    private val repository: Repository
+) :
     RecyclerView.Adapter<RecyclerProductsAdapter.ViewHolder>() {
+    var favoriteList = repository.getFavoriteFlowProducts().toMutableList()
     var items = emptyList<Product>()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
-            field = value
+            field = value.map { product ->
+                if (favoriteList.firstOrNull { it.id == product.id } != null)
+                    product.isFavorite = true
+                product
+            }
             notifyDataSetChanged()
         }
 
@@ -44,15 +54,12 @@ class RecyclerProductsAdapter(private val resourcesProvider: ResourcesProvider) 
         fun bind(product: Product, position: Int) = with(binding) {
             binding.product = product
             image.setImageDrawable(resourcesProvider.getDrawable(R.drawable.loading))
-            GlobalScope.launch {
+            MainScope().launch {
                 product.bitmap.collect {
                     if (it != null)
-                        withContext(Dispatchers.Main) {
-                            image.setImageBitmap(it)
-                        }
+                        image.setImageBitmap(it)
                 }
             }
-
             if (product.isVisible) {
                 expand.visibility = View.VISIBLE
             } else {
@@ -66,11 +73,37 @@ class RecyclerProductsAdapter(private val resourcesProvider: ResourcesProvider) 
                 product.isVisible = !product.isVisible
                 notifyItemChanged(position)
             }
+            favorite.setTextColor(Color.WHITE)
+            favorite.activate(product.isFavorite)
             favorite.setOnClickListener {
-                favorite.setCompoundDrawables(
-                    resourcesProvider.getDrawable(R.drawable.ic_favorite_24), null, null, null
-                )
+                if (product.isFavorite) {
+                    product.isFavorite = false
+                    deleteFavorite(product)
+                    favorite.activate(false)
+                } else {
+                    addFavorite(product)
+                    product.isFavorite = true
+                    favorite.activate(true)
+                }
             }
+        }
+
+        private fun TextView.activate(activate: Boolean) {
+            if (activate) {
+                this.setBackgroundColor(Color.BLACK)
+            } else {
+                this.setBackgroundColor(Color.GRAY)
+            }
+        }
+
+        private fun addFavorite(product: Product) {
+            repository.addFavorite(product.toProductEntity())
+            favoriteList.add(product.toProductEntity())
+        }
+
+        private fun deleteFavorite(product: Product) {
+            repository.deleteFavorite(product.toProductEntity())
+            favoriteList.remove(product.toProductEntity())
         }
     }
 }
