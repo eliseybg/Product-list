@@ -24,7 +24,7 @@ class RecyclerProductsAdapter(
     private val repository: Repository
 ) :
     RecyclerView.Adapter<RecyclerProductsAdapter.ViewHolder>() {
-    var favoriteList = repository.getFavoriteFlowProducts().toMutableList()
+    var favoriteList = repository.getFavoriteProducts().toMutableList()
     var items = emptyList<Product>()
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
