@@ -73,4 +73,4 @@ Changed theme will be saved and when you will return to app, you don't need to c
 
 <img src="https://user-images.githubusercontent.com/57315212/152639927-e8912a28-fd5c-4444-ac63-9148b382430e.jpg" height="400"/>
 
-In info about app you can see info about developer
+In about app you can see info about developer
