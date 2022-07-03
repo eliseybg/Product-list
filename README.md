@@ -1,16 +1,21 @@
-# Lab2 BSUIR mobile development
-• Hilt<br />
-• Realm<br />
-• Navigation<br />
-• Coroutines
+# Product list
 
-Api:
-https://fakestoreapi.com
+## General info
+This project acts as a laboratory work at the university. The main idea of this application is to display products in the store. It is also available to view the current location and the exchange rate at the moment. 
+
+## Technologies
+Project is created with:
+* Kotlin
+* Coroutines
+* Hilt
+* Realm
+* Retrofit
+* Jetpack navigation
+* Google map
+* Jsoup
+* Api: https://fakestoreapi.com
+
 ## Screenshots
-
-
-
-
 <h3>Home Screen</h3>
 
 <img src="https://user-images.githubusercontent.com/57315212/152639922-d7706463-f341-4418-88e8-c09ffec574ec.jpg" height="400"/>
