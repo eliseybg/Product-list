@@ -13,6 +13,7 @@ Project is created with:
 * Jetpack navigation
 * Google map
 * Jsoup
+* MVVM
 * Api: https://fakestoreapi.com
 
 ## Screenshots
